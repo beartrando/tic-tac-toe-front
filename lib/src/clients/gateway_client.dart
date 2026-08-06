@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class GatewayClient {
   final String baseUrl;
   final int port;
-  final GatewayConfig config;
+  final GatewayConfig appConfig;
 
   GatewayClient(this.config) : baseUrl = config.host, port = config.port;
 

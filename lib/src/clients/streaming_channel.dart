@@ -8,7 +8,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 final logger = Logger();
 
 abstract class StreamingChannel<T> {
-  final StreamingConfig config;
+  final StreamingConfig appConfig;
   late WebSocketChannel _channel;
   late StreamSubscription _subscription;
   Timer? _heartbeat;

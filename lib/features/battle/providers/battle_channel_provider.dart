@@ -12,7 +12,7 @@ final battleChannelProvider =
 
       // final existing = ref.state as BattleChannel?;
       // if (existing != null) return existing;
-      final config = StreamingConfig.fromEnv();
+      final appConfig = StreamingConfig.fromEnv();
 
       return BattleChannel(config, params.profileId, params.clientParams.jwt);
     });

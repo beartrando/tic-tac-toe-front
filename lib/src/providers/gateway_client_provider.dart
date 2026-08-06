@@ -6,7 +6,7 @@ import 'package:logger/logger.dart';
 final logger = Logger();
 
 final gatewayClientProvider = Provider<GatewayClient>((ref) {
-  final config = GatewayConfig.fromEnv();
+  final appConfig = GatewayConfig.fromEnv();
   ;
   logger.i(config);
   logger.i('Init started with app: $config');

@@ -11,7 +11,7 @@ final profileClientProvider = Provider.family<ProfileClient, ClientParams>((
   ref,
   params,
 ) {
-  final config = GatewayConfig.fromEnv();
+  final appConfig = GatewayConfig.fromEnv();
 
   final profileClient = ProfileClient(params.jwt, config);
 

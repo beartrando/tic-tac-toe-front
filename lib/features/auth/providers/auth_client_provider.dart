@@ -7,7 +7,7 @@ import '../clients/auth_client.dart';
 final logger = Logger();
 
 final authClientProvider = Provider<AuthClient>((ref) {
-  final config = GatewayConfig.fromEnv();
+  final appConfig = GatewayConfig.fromEnv();
 
   final authClient = AuthClient(config);
 

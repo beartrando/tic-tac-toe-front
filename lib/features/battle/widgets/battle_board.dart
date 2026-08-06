@@ -25,7 +25,7 @@ class BattleBoard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final config = ref.watch(appConfigProvider);
+    final appConfig = ref.watch(appConfigProvider);
     return Column(
       children: [
         Row(
