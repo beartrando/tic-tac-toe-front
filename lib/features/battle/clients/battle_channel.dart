@@ -44,7 +44,7 @@ class BattleChannel extends StreamingChannel<battleProto.BattleObject> {
   BattleChannel(super.config, this.profileId, super.jwt);
 
   void move(String battleId, int cellIdx) {
-    // logger.i('Move event');
+    // logger.i('BattleMove event');
     final moveReq = BattleMove()
       ..cellIdx = cellIdx
       ..battleId = battleId;
@@ -63,7 +63,7 @@ class BattleChannel extends StreamingChannel<battleProto.BattleObject> {
   }
 
   connectAi(String battleId) {
-    // logger.i('Move event');
+    // logger.i('BattleMove event');
     final connectAiRequest = streamingProto.BattleJoinAi()..battleId = battleId;
 
     final req = BattleRequest()..connectAi = connectAiRequest;
