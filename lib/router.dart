@@ -8,5 +8,5 @@ final appRouter = <String, WidgetBuilder>{
   '/': (context) => const HomeScreen(),
   '/settings': (context) => SettingsScreen(),
   '/profile': (context) => const ProfileScreen(),
-  '/battle': (context) => const BattleScreen(),
+  '/engine': (context) => const BattleScreen(),
 };

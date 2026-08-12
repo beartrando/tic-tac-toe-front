@@ -1,5 +1,5 @@
 import 'package:front/features/battle/clients/battle_channel.dart';
-import 'package:front/src/contracts/proto/battle.pb.dart';
+import 'package:front/src/contracts/proto/engine.pb.dart';
 import 'package:logger/logger.dart';
 
 final logger = Logger();

@@ -11,8 +11,8 @@ import path_provider_foundation
 import shared_preferences_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  DeviceInfoPlusMacosPlugin.register(with: registry.registrar(forPlugin: "DeviceInfoPlusMacosPlugin"))
-  FlutterSecureStorageDarwinPlugin.register(with: registry.registrar(forPlugin: "FlutterSecureStorageDarwinPlugin"))
-  PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
-  SharedPreferencesPlugin.register(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))
+  DeviceInfoPlusMacosPlugin.registerHandler(with: registry.registrar(forPlugin: "DeviceInfoPlusMacosPlugin"))
+  FlutterSecureStorageDarwinPlugin.registerHandler(with: registry.registrar(forPlugin: "FlutterSecureStorageDarwinPlugin"))
+  PathProviderPlugin.registerHandler(with: registry.registrar(forPlugin: "PathProviderPlugin"))
+  SharedPreferencesPlugin.registerHandler(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))
 }

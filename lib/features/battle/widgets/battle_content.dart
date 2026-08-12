@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:front/features/profile/widgets/player_name.dart';
-import 'package:front/src/contracts/proto/battle.pb.dart';
+import 'package:front/src/contracts/proto/engine.pb.dart';
 
 import '../services/battle_service.dart';
 import '../widgets/battle_board.dart';

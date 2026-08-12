@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:fixnum/fixnum.dart';
 import 'package:front/src/clients/streaming_channel.dart';
-import 'package:front/src/contracts/proto/battle.pb.dart' as battleProto;
+import 'package:front/src/contracts/proto/engine.pb.dart' as battleProto;
 import 'package:front/src/contracts/proto/common/ping.pb.dart';
 import 'package:front/src/contracts/proto/streaming.pb.dart' as streamingProto;
 import 'package:front/src/contracts/proto/streaming.pb.dart';
@@ -13,7 +13,7 @@ final logger = Logger();
 
 class BattleChannel extends StreamingChannel<battleProto.BattleObject> {
   late String profileId;
-  final pathname = 'battle';
+  final pathname = 'engine';
 
   messageHandler(List<int> message) {
     try {
@@ -21,11 +21,11 @@ class BattleChannel extends StreamingChannel<battleProto.BattleObject> {
       // logger.i(resp);
       if (resp.hasBattle()) {
         final battle = resp.battle;
-        // logger.i('before battle added to controller');
+        // logger.i('before engine added to controller');
         safeAdd(battle);
-        // logger.i('battle added to controller');
+        // logger.i('engine added to controller');
 
-        // logger.i('battle added to controller');
+        // logger.i('engine added to controller');
       } else {
         logger.e(resp);
         logger.e('Battle handling went wrong: $resp');
@@ -82,7 +82,7 @@ class BattleChannel extends StreamingChannel<battleProto.BattleObject> {
     final req = BattleRequest()..start = request;
     channel.sink.add(req.writeToBuffer());
 
-    // logger.i('Sent start battle: $battleId');
+    // logger.i('Sent start engine: $battleId');
   }
 
   Future<void> ping() async {

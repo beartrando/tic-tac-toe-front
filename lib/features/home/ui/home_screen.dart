@@ -102,7 +102,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           children: [
             const SizedBox(height: 40),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/battle'),
+              onPressed: () => Navigator.pushNamed(context, '/engine'),
               style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(60),

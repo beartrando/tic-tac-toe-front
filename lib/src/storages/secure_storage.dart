@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class SecureStorage {
   final FlutterSecureStorage _storage = FlutterSecureStorage();
 
-  Future<void> save(String key, String value) async {
+  Future<void> set(String key, String value) async {
     await _storage.write(key: key, value: value);
   }
 
