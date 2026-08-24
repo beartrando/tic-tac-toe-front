@@ -3,8 +3,8 @@
   "appTitle": "Front App",
   "welcome": "Welcome to Front App",
   "play": "Play",
-  "nickname": "Nickname",
+  "nickname": "ProfileNickname",
   "exp": "Exp.",
-  "level": "Level",
+  "level": "ProfileLevel",
   "close": "Close"
 }

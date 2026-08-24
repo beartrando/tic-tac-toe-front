@@ -75,9 +75,9 @@ class S {
     return Intl.message('Play', name: 'play', desc: '', args: []);
   }
 
-  /// `Nickname`
+  /// `ProfileNickname`
   String get nickname {
-    return Intl.message('Nickname', name: 'nickname', desc: '', args: []);
+    return Intl.message('ProfileNickname', name: 'nickname', desc: '', args: []);
   }
 
   /// `Exp.`
@@ -85,9 +85,9 @@ class S {
     return Intl.message('Exp.', name: 'exp', desc: '', args: []);
   }
 
-  /// `Level`
+  /// `ProfileLevel`
   String get level {
-    return Intl.message('Level', name: 'level', desc: '', args: []);
+    return Intl.message('ProfileLevel', name: 'level', desc: '', args: []);
   }
 }
 

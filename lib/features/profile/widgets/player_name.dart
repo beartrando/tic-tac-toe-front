@@ -45,8 +45,8 @@ class PlayerName extends ConsumerWidget {
           error: (err, _) => Text("Ошибка: $err"),
         );
       },
-      loading: () => const Text("Auth..."),
-      error: (err, _) => Text("Auth error: $err"),
+      loading: () => const Text("AuthObject..."),
+      error: (err, _) => Text("AuthObject error: $err"),
     );
   }
 }

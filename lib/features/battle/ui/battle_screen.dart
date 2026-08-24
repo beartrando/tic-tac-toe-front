@@ -71,7 +71,7 @@ class _BattleScreenState extends ConsumerState<BattleScreen> {
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => Text("Auth error: $e"),
+      error: (e, _) => Text("AuthObject error: $e"),
     );
   }
 

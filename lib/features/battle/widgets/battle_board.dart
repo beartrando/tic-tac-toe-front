@@ -7,7 +7,7 @@ import 'package:front/src/contracts/proto/profile.pb.dart';
 import 'package:front/src/providers/app_config_provider.dart';
 import 'package:front/widgets/turn_timer.dart';
 
-class Board extends ConsumerWidget {
+class BattleBoard extends ConsumerWidget {
   final BattleObject battle;
   final BattleService battleService;
 
@@ -16,7 +16,7 @@ class Board extends ConsumerWidget {
 
   // final WidgetRef ref;
 
-  const Board({
+  const BattleBoard({
     required this.profile,
     required this.battle,
     required this.battleService,
