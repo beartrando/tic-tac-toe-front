@@ -9,7 +9,7 @@ class LocaleStorage extends SecureStorage {
 
   Future<void> saveLocale(String locale) async {
     _locale = locale;
-    await save(this._localeKey, locale);
+    await set(this._localeKey, locale);
   }
 
   Future<String> readLocale() async {

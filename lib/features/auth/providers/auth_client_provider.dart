@@ -9,7 +9,7 @@ final logger = Logger();
 final authClientProvider = Provider<AuthClient>((ref) {
   final appConfig = GatewayConfig.fromEnv();
 
-  final authClient = AuthClient(config);
+  final authClient = AuthClient(appConfig);
 
   return authClient;
 });

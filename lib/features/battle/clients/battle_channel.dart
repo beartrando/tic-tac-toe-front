@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:fixnum/fixnum.dart';
 import 'package:front/src/clients/streaming_channel.dart';
-import 'package:front/src/contracts/proto/engine.pb.dart' as battleProto;
+import 'package:front/src/contracts/proto/battle.pb.dart' as battleProto;
 import 'package:front/src/contracts/proto/common/ping.pb.dart';
 import 'package:front/src/contracts/proto/streaming.pb.dart' as streamingProto;
 import 'package:front/src/contracts/proto/streaming.pb.dart';

@@ -14,5 +14,9 @@ final battleChannelProvider =
       // if (existing != null) return existing;
       final appConfig = StreamingConfig.fromEnv();
 
-      return BattleChannel(config, params.profileId, params.clientParams.jwt);
+      return BattleChannel(
+        appConfig,
+        params.profileId,
+        params.clientParams.jwt,
+      );
     });

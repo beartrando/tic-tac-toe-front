@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:front/features/battle/params/battle_params.dart';
-import 'package:front/src/contracts/proto/engine.pb.dart';
+import 'package:front/src/contracts/proto/battle.pb.dart';
 
 import '../../battle/providers/battle_channel_provider.dart';
 

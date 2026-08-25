@@ -17,13 +17,13 @@ class GatewayClient {
   Future<String> post(
     String path,
     Map<String, dynamic> body, {
-    Map<String, String>? _headers,
+    Map<String, String>? headers,
   }) async {
     final response = await http.post(
       buildUri(path),
-      _headers: {
+      headers: {
         'Content-Type': 'application/json',
-        ...?_headers, // добавляем кастомные заголовки
+        ...?headers, // добавляем кастомные заголовки
       },
       body: jsonEncode(body),
     );
@@ -35,10 +35,10 @@ class GatewayClient {
     }
   }
 
-  Future<String> get(String path, {Map<String, String>? _headers}) async {
+  Future<String> get(String path, {Map<String, String>? headers}) async {
     final response = await http.get(
       buildUri(path),
-      _headers: {'Content-Type': 'application/json', ...?_headers},
+      headers: {'Content-Type': 'application/json', ...?headers},
     );
 
     if (response.statusCode == 200) {
