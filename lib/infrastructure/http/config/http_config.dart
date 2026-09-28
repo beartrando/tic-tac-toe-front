@@ -15,7 +15,7 @@ class HttpConfig {
     final host = dotenv.env['GATEWAY_HOST'] ?? 'localhost';
     final port = int.tryParse(dotenv.env['GATEWAY_PORT'] ?? '') ?? 9090;
 
-    final schema = dotenv.env['GATEWAY_SCHEMA'] ?? 'http';
+    final schema = port == 443 ? 'https' : 'http';
 
     return HttpConfig(schema: schema, host: host, port: port);
   }
