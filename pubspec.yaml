@@ -51,10 +51,10 @@ flutter:
   assets:
     - .env
     - assets/audio/music/background.mp3
-    - assets/audio/effects/fail.wav
+    - assets/audio/effects/win.wav
+    - assets/audio/effects/lose.wav
     - assets/audio/effects/move.wav
     - assets/audio/effects/reject-move.wav
-    - assets/audio/effects/victory.wav
 
 flutter_intl:
   enabled: true

@@ -7,9 +7,9 @@ class SoundEffectsPlayer {
 
   Future<void> playMove() => _play('audio/effects/move.wav');
 
-  Future<void> playWin() => _play('audio/effects/victory.wav');
+  Future<void> playWin() => _play('audio/effects/win.wav');
 
-  Future<void> playLose() => _play('audio/effects/fail.wav');
+  Future<void> playLose() => _play('audio/effects/lose.wav');
 
   Future<void> playRejectMove() => _play('audio/effects/reject-move.wav');
 

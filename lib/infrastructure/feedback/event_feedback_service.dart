@@ -84,7 +84,7 @@ class EventFeedbackService {
       return;
     }
 
-    await _musicPlayer.play('audio/music/background.mp3');
+    await _musicPlayer.play();
   }
 
   Future<void> stopBackgroundMusic() async {
