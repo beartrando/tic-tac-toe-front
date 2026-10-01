@@ -1,6 +1,1 @@
-enum VisualEffectType {
-  move,
-  win,
-  lose,
-  rejectMove,
-}
+enum VisualEffectType { move, win, lose, rejectMove }

@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:front/infrastructure/feedback/haptic/haptic_effect.dart';
 
 class HapticFeedbackAdapter {
   const HapticFeedbackAdapter();
@@ -33,5 +34,14 @@ class HapticFeedbackAdapter {
     } catch (_) {
       // Ignored if haptic feedback is not supported on the platform.
     }
+  }
+
+  Future<void> execute(HapticEffect effect) {
+    return switch (effect) {
+      HapticEffect.light => this.lightImpact(),
+      HapticEffect.medium => this.mediumImpact(),
+      HapticEffect.heavy => this.heavyImpact(),
+      HapticEffect.selectionClick => this.selectionClick(),
+    };
   }
 }

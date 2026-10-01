@@ -1,18 +1,13 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:front/infrastructure/feedback/audio_config.dart';
+import 'package:audioplayers/audioplayers.dart' as ap;
 
-class MusicPlayer {
-  final AudioPlayer _player;
+class AudioPlayer {
+  final ap.AudioPlayer _player;
 
-  MusicPlayer({
-    AudioConfig config = const AudioConfig(),
-    AudioPlayer? player,
-  })  : _config = config,
-        _player = player ?? AudioPlayer();
+  AudioPlayer({ap.AudioPlayer? player}) : _player = player ?? ap.AudioPlayer();
 
   Future<void> play(String asset) async {
-    await _player.setReleaseMode(ReleaseMode.loop);
-    await _player.play(AssetSource(asset));
+    await _player.setReleaseMode(ap.ReleaseMode.loop);
+    await _player.play(ap.AssetSource(asset));
   }
 
   Future<void> stop() => _player.stop();
