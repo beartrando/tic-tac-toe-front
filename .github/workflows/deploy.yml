@@ -119,7 +119,9 @@ jobs:
         run: dart run env/generate.dart
 
       - name: Create .env
-        run: cp ".env.${{ github.ref_name }}" .env
+        run: |
+          cp ".env.${{ github.ref_name }}" .env
+          cat .env
 
       #      - name: Verify .env
       #        run: |
