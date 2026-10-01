@@ -6,7 +6,6 @@ import 'package:front/infrastructure/audio/app_music_controller_provider.dart';
 
 final settingProvider = StateNotifierProvider<SettingNotifier, Setting>((ref) {
   final settingDomain = ref.watch(settingDomainProvider);
-  final musicController = ref.read(musicControllerProvider);
 
-  return SettingNotifier(settingDomain, musicController);
+  return SettingNotifier(settingDomain);
 });
