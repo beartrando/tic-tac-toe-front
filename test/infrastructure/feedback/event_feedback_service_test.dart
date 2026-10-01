@@ -150,7 +150,7 @@ void main() {
       final service = EventFeedbackService(
         getSetting: () => createSetting(),
         soundEffectsPlayer: sfxPlayer,
-        musicPlayer: musicPlayer,
+        audioPlayer: musicPlayer,
         hapticFeedback: hapticAdapter,
         visualEffectsHandler: visualHandler,
       );
@@ -166,7 +166,7 @@ void main() {
       final service = EventFeedbackService(
         getSetting: () => createSetting(vibration: false),
         soundEffectsPlayer: sfxPlayer,
-        musicPlayer: musicPlayer,
+        audioPlayer: musicPlayer,
         hapticFeedback: hapticAdapter,
         visualEffectsHandler: visualHandler,
       );
@@ -182,7 +182,7 @@ void main() {
       final service = EventFeedbackService(
         getSetting: () => createSetting(effects: false),
         soundEffectsPlayer: sfxPlayer,
-        musicPlayer: musicPlayer,
+        audioPlayer: musicPlayer,
         hapticFeedback: hapticAdapter,
         visualEffectsHandler: visualHandler,
       );
@@ -198,7 +198,7 @@ void main() {
       final service = EventFeedbackService(
         getSetting: () => createSetting(),
         soundEffectsPlayer: sfxPlayer,
-        musicPlayer: musicPlayer,
+        audioPlayer: musicPlayer,
         hapticFeedback: hapticAdapter,
         visualEffectsHandler: visualHandler,
       );
@@ -214,7 +214,7 @@ void main() {
       final service = EventFeedbackService(
         getSetting: () => createSetting(),
         soundEffectsPlayer: sfxPlayer,
-        musicPlayer: musicPlayer,
+        audioPlayer: musicPlayer,
         hapticFeedback: hapticAdapter,
         visualEffectsHandler: visualHandler,
       );
@@ -230,7 +230,7 @@ void main() {
       final service = EventFeedbackService(
         getSetting: () => createSetting(),
         soundEffectsPlayer: sfxPlayer,
-        musicPlayer: musicPlayer,
+        audioPlayer: musicPlayer,
         hapticFeedback: hapticAdapter,
         visualEffectsHandler: visualHandler,
       );
@@ -247,7 +247,7 @@ void main() {
       final service = EventFeedbackService(
         getSetting: () => currentSetting,
         soundEffectsPlayer: sfxPlayer,
-        musicPlayer: musicPlayer,
+        audioPlayer: musicPlayer,
         hapticFeedback: hapticAdapter,
         visualEffectsHandler: visualHandler,
       );
@@ -264,7 +264,7 @@ void main() {
       final service = EventFeedbackService(
         getSetting: () => createSetting(),
         soundEffectsPlayer: sfxPlayer,
-        musicPlayer: musicPlayer,
+        audioPlayer: musicPlayer,
         hapticFeedback: hapticAdapter,
         visualEffectsHandler: visualHandler,
       );

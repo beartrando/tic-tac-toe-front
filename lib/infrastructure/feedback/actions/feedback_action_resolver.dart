@@ -1,3 +1,6 @@
+import 'package:front/infrastructure/feedback/actions/feedback_action.dart';
+import 'package:front/infrastructure/feedback/events/feedback_event.dart';
+
 class FeedbackActionResolver {
   final Map<Type, FeedbackAction Function()> _actions;
 
@@ -7,9 +10,7 @@ class FeedbackActionResolver {
     final factory = _actions[event.runtimeType];
 
     if (factory == null) {
-      throw StateError(
-        'No FeedbackAction registered for ${event.runtimeType}',
-      );
+      throw StateError('No FeedbackAction registered for ${event.runtimeType}');
     }
 
     return factory();

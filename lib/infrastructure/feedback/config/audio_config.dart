@@ -1,15 +1,18 @@
 class AudioConfig {
-  final String backgroundMusic;
+  static const String moveDefault = 'audio/effects/move.wav';
+  static const String winDefault = 'audio/effects/win.wav';
+  static const String loseDefault = 'audio/effects/lose.wav';
+  static const String rejectMoveDefault = 'audio/effects/reject-move.wav';
+
   final String move;
   final String win;
   final String lose;
   final String rejectMove;
 
   const AudioConfig({
-    this.backgroundMusic = 'audio/music/background.mp3',
-    this.move = 'audio/effects/move.wav',
-    this.win = 'audio/effects/win.wav',
-    this.lose = 'audio/effects/lose.wav',
-    this.rejectMove = 'audio/effects/reject-move.wav',
+    this.move = moveDefault,
+    this.win = winDefault,
+    this.lose = loseDefault,
+    this.rejectMove = rejectMoveDefault,
   });
 }

@@ -38,10 +38,10 @@ class HapticFeedbackAdapter {
 
   Future<void> execute(HapticEffect effect) {
     return switch (effect) {
-      HapticEffect.light => this.lightImpact(),
-      HapticEffect.medium => this.mediumImpact(),
-      HapticEffect.heavy => this.heavyImpact(),
-      HapticEffect.selectionClick => this.selectionClick(),
+      HapticEffect.light => lightImpact(),
+      HapticEffect.medium => mediumImpact(),
+      HapticEffect.heavy => heavyImpact(),
+      HapticEffect.selectionClick => selectionClick(),
     };
   }
 }
