@@ -9,6 +9,7 @@ import 'package:front/features/battle/providers/battle_stream_provider.dart';
 import 'package:front/features/battle/ui/widgets/battle_content.dart';
 import 'package:front/features/profile/providers/my_profile_provider.dart';
 import 'package:front/infrastructure/audio/app_music_controller_provider.dart';
+import 'package:front/infrastructure/audio/music_controller.dart';
 import 'package:front/infrastructure/localization/generated/l10n.dart';
 import 'package:logger/logger.dart';
 
@@ -23,12 +24,14 @@ class BattleScreen extends ConsumerStatefulWidget {
 
 class _BattleScreenState extends ConsumerState<BattleScreen> {
   late BattleService battleService;
+  late final MusicController _musicController;
   Battle? _battle;
 
   @override
   void initState() {
     super.initState();
-    ref.read(musicControllerProvider).play();
+    _musicController = ref.read(musicControllerProvider);
+    _musicController.play();
   }
 
   @override
@@ -98,7 +101,7 @@ class _BattleScreenState extends ConsumerState<BattleScreen> {
   void dispose() {
     debugPrint("BattleScreen dispose");
 
-    ref.read(musicControllerProvider).stop();
+    _musicController.stop();
 
     final battle = _battle;
     if (battle != null) {
