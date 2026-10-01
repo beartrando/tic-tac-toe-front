@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:front/features/setting/application/setting_provider.dart';
-import 'package:front/infrastructure/audio/music_player_provider.dart';
+import 'package:front/infrastructure/audio/audio_player_provider.dart';
 import 'package:front/infrastructure/audio/sound_effects_player_provider.dart';
 import 'package:front/infrastructure/feedback/event_feedback_service.dart';
 import 'package:front/infrastructure/feedback/haptic/haptic_feedback_adapter_provider.dart';

@@ -1,5 +1,5 @@
 import 'package:front/domain/setting/value_objects/setting.dart';
-import 'package:front/infrastructure/audio/music_player.dart';
+import 'package:front/infrastructure/audio/audio_player.dart';
 import 'package:front/infrastructure/audio/sound_effects_player.dart';
 import 'package:front/infrastructure/feedback/haptic/haptic_feedback_adapter.dart';
 import 'package:front/infrastructure/feedback/visual/no_op_visual_effects_handler.dart';
