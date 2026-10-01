@@ -115,16 +115,11 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Generate environment files
+        run: dart run env/generate.dart
+
       - name: Create .env
-        run: |
-          cat > .env <<EOF
-          ENV=${{ github.ref_name }}
-          GATEWAY_HOST=${{ secrets.GATEWAY_HOST }}
-          GATEWAY_PORT=${{ secrets.GATEWAY_PORT }}
-          STREAMING_HOST=${{ secrets.STREAMING_HOST }}
-          STREAMING_PORT=${{ secrets.STREAMING_PORT }}
-          MOVE_TIMEOUT=${{ secrets.MOVE_TIMEOUT }}
-          EOF
+        run: cp ".env.${{ github.ref_name }}" .env
 
       #      - name: Verify .env
       #        run: |
