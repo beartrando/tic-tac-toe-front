@@ -32,6 +32,7 @@ dependencies:
   firebase_core: ^4.15.0
   firebase_crashlytics: ^5.4.0
   firebase_analytics: ^12.6.0
+  audioplayers: ^6.7.1
 
 
 dev_dependencies:
@@ -49,6 +50,11 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+    - assets/audio/music/background.mp3
+    - assets/audio/effects/fail.wav
+    - assets/audio/effects/move.wav
+    - assets/audio/effects/reject-move.wav
+    - assets/audio/effects/victory.wav
 
 flutter_intl:
   enabled: true
