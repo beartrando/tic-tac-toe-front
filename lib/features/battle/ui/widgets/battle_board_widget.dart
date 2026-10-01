@@ -11,6 +11,9 @@ import 'package:front/features/battle/infrastructure/websocket/battle_service.da
 import 'package:front/features/battle/ui/widgets/turn_timer.dart';
 import 'package:front/features/profile/ui/widgets/player_name.dart';
 import 'package:front/infrastructure/app/app_config_provider.dart';
+import 'package:front/infrastructure/feedback/event_feedback_service_provider.dart';
+import 'package:front/infrastructure/feedback/events/move_event.dart';
+import 'package:front/infrastructure/feedback/events/reject_move_event.dart';
 import 'package:front/infrastructure/localization/generated/l10n.dart';
 
 class BattleBoardWideget extends ConsumerWidget {
@@ -33,6 +36,8 @@ class BattleBoardWideget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final config = ref.watch(appConfigProvider);
+    final feedbackService = ref.read(eventFeedbackServiceProvider);
+
     return Column(
       children: [
         Row(
@@ -86,6 +91,9 @@ class BattleBoardWideget extends ConsumerWidget {
                 onTap: () {
                   if (CanMove().calculate(battle, profile.id)) {
                     battleService.makeMove(battle, index);
+                    feedbackService.execute(const MoveEvent());
+                  } else {
+                    feedbackService.execute(const RejectMoveEvent());
                   }
                 },
                 child: Container(

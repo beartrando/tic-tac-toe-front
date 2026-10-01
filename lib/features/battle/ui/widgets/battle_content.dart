@@ -1,13 +1,17 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:front/domain/battle/entities/battle.dart';
 import 'package:front/domain/battle/enums/battle_status.enum.dart';
 import 'package:front/features/battle/infrastructure/websocket/battle_service.dart';
 import 'package:front/features/battle/ui/widgets/battle_board_widget.dart';
+import 'package:front/infrastructure/feedback/event_feedback_service_provider.dart';
+import 'package:front/infrastructure/feedback/events/lose_event.dart';
+import 'package:front/infrastructure/feedback/events/win_event.dart';
 import 'package:front/infrastructure/localization/generated/l10n.dart';
 
-class BattleContent extends StatefulWidget {
+class BattleContent extends ConsumerStatefulWidget {
   final Battle battle;
   final dynamic profile;
   final BattleService battleService;
@@ -20,10 +24,10 @@ class BattleContent extends StatefulWidget {
   });
 
   @override
-  State<BattleContent> createState() => _BattleContentState();
+  ConsumerState<BattleContent> createState() => _BattleContentState();
 }
 
-class _BattleContentState extends State<BattleContent> {
+class _BattleContentState extends ConsumerState<BattleContent> {
   static const _aiConnectionDelay = Duration(seconds: 5);
 
   Timer? _aiConnectionTimer;
@@ -64,6 +68,8 @@ class _BattleContentState extends State<BattleContent> {
 
   void _showMatchFinishedDialog(BuildContext context, Battle battle) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _triggerFinishFeedback(battle);
+
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -93,6 +99,12 @@ class _BattleContentState extends State<BattleContent> {
         ),
       );
     });
+  }
+
+  void _triggerFinishFeedback(Battle battle) {
+    final feedbackService = ref.read(eventFeedbackServiceProvider);
+    final isWin = battle.winnerId == widget.profile.id;
+    feedbackService.execute(isWin ? const WinEvent() : const LoseEvent());
   }
 
   @override
