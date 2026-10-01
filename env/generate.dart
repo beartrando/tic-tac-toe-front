@@ -38,8 +38,9 @@ void writeEnv(
       required bool force,
     }) {
   final file = File(filename);
+  final exists = file.existsSync();
 
-  if (file.existsSync() && !force) {
+  if (exists && !force) {
     print('Warning: skipped $filename — file already exists');
     return;
   }
@@ -50,7 +51,7 @@ void writeEnv(
 
   file.writeAsStringSync('$content\n');
 
-  print('${force ? 'Updated' : 'Created'}: $filename');
+  print('${exists ? 'Updated' : 'Created'}: $filename');
 }
 
 void main(List<String> args) {
@@ -66,20 +67,18 @@ void main(List<String> args) {
   final baseEnvPath = '$envDirectoryPath/.env';
   final baseEnv = readEnv(baseEnvPath);
 
-  // Generate ../.env
   writeEnv(
     '.env',
     baseEnv,
     force: force,
   );
 
-  // Find all .env.* files and generate corresponding files one level above.
   final environmentFiles = envDirectory
       .listSync()
       .whereType<File>()
       .where((file) {
     final name = file.uri.pathSegments.last;
-    return name.startsWith('.env.') && name != '.env';
+    return name.startsWith('.env.');
   });
 
   for (final file in environmentFiles) {
@@ -92,10 +91,9 @@ void main(List<String> args) {
     };
 
     writeEnv(
-      '$name',
+      name,
       variables,
       force: force,
     );
   }
 }
-
