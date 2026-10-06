@@ -6,4 +6,3 @@ final musicPlayerProvider = Provider<AudioPlayer>((ref) {
   ref.onDispose(() => player.dispose());
   return player;
 });
-
