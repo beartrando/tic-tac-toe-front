@@ -58,13 +58,11 @@ class AuthorizedHttpClient {
 
     var response = await request(token.value);
 
-    final body = response.body != null
-        ? jsonDecode(response.body!)
-        : {};
+    final body = response.body != null ? jsonDecode(response.body!) : {};
     final tokenExpired =
         body is Map<String, dynamic> &&
-            body['error'] is Map<String, dynamic> &&
-            body['error']['code'] == 401;
+        body['error'] is Map<String, dynamic> &&
+        body['error']['code'] == 401;
 
     if (tokenExpired || response.statusCode == 401) {
       await _authService.clearRefreshToken();

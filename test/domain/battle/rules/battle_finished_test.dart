@@ -22,9 +22,7 @@ void main() {
       twoPlayers = BattlePlayerIds([player1, player2]);
     });
 
-    Battle createBattle({
-      BattleStatusEnum status = BattleStatusEnum.started,
-    }) {
+    Battle createBattle({BattleStatusEnum status = BattleStatusEnum.started}) {
       return Battle(
         id: const BattleId('battle-1'),
         board: BattleBoard(List.filled(9, BattleCellValueEnum.empty)),

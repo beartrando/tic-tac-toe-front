@@ -67,7 +67,9 @@ void main() {
 
     test('copyWith updates only specified fields', () {
       const original = Setting.defaultValue();
-      final updated = original.copyWith(soundEnabled: const SoundEnabled(false));
+      final updated = original.copyWith(
+        soundEnabled: const SoundEnabled(false),
+      );
 
       expect(updated.soundEnabled.value, false);
       expect(updated.effectsSoundEnabled.value, true);

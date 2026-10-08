@@ -146,21 +146,24 @@ void main() {
       visualHandler = FakeVisualEffectsHandler();
     });
 
-    test('move() triggers lightImpact, sfx, and visual effect when all enabled', () async {
-      final service = EventFeedbackService(
-        getSetting: () => createSetting(),
-        soundEffectsPlayer: sfxPlayer,
-        audioPlayer: musicPlayer,
-        hapticFeedback: hapticAdapter,
-        visualEffectsHandler: visualHandler,
-      );
+    test(
+      'move() triggers lightImpact, sfx, and visual effect when all enabled',
+      () async {
+        final service = EventFeedbackService(
+          getSetting: () => createSetting(),
+          soundEffectsPlayer: sfxPlayer,
+          audioPlayer: musicPlayer,
+          hapticFeedback: hapticAdapter,
+          visualEffectsHandler: visualHandler,
+        );
 
-      await service.move();
+        await service.move();
 
-      expect(hapticAdapter.lightImpactCount, 1);
-      expect(sfxPlayer.playMoveCount, 1);
-      expect(visualHandler.triggered, [VisualEffectType.move]);
-    });
+        expect(hapticAdapter.lightImpactCount, 1);
+        expect(sfxPlayer.playMoveCount, 1);
+        expect(visualHandler.triggered, [VisualEffectType.move]);
+      },
+    );
 
     test('move() ignores vibration when vibrationEnabled is false', () async {
       final service = EventFeedbackService(
@@ -178,87 +181,102 @@ void main() {
       expect(visualHandler.triggered, [VisualEffectType.move]);
     });
 
-    test('move() ignores sound and visual effects when effectsSoundEnabled is false', () async {
-      final service = EventFeedbackService(
-        getSetting: () => createSetting(effects: false),
-        soundEffectsPlayer: sfxPlayer,
-        audioPlayer: musicPlayer,
-        hapticFeedback: hapticAdapter,
-        visualEffectsHandler: visualHandler,
-      );
+    test(
+      'move() ignores sound and visual effects when effectsSoundEnabled is false',
+      () async {
+        final service = EventFeedbackService(
+          getSetting: () => createSetting(effects: false),
+          soundEffectsPlayer: sfxPlayer,
+          audioPlayer: musicPlayer,
+          hapticFeedback: hapticAdapter,
+          visualEffectsHandler: visualHandler,
+        );
 
-      await service.move();
+        await service.move();
 
-      expect(hapticAdapter.lightImpactCount, 1);
-      expect(sfxPlayer.playMoveCount, 0);
-      expect(visualHandler.triggered, isEmpty);
-    });
+        expect(hapticAdapter.lightImpactCount, 1);
+        expect(sfxPlayer.playMoveCount, 0);
+        expect(visualHandler.triggered, isEmpty);
+      },
+    );
 
-    test('win() triggers heavyImpact, victory sfx, and win visual effect', () async {
-      final service = EventFeedbackService(
-        getSetting: () => createSetting(),
-        soundEffectsPlayer: sfxPlayer,
-        audioPlayer: musicPlayer,
-        hapticFeedback: hapticAdapter,
-        visualEffectsHandler: visualHandler,
-      );
+    test(
+      'win() triggers heavyImpact, victory sfx, and win visual effect',
+      () async {
+        final service = EventFeedbackService(
+          getSetting: () => createSetting(),
+          soundEffectsPlayer: sfxPlayer,
+          audioPlayer: musicPlayer,
+          hapticFeedback: hapticAdapter,
+          visualEffectsHandler: visualHandler,
+        );
 
-      await service.win();
+        await service.win();
 
-      expect(hapticAdapter.heavyImpactCount, 1);
-      expect(sfxPlayer.playWinCount, 1);
-      expect(visualHandler.triggered, [VisualEffectType.win]);
-    });
+        expect(hapticAdapter.heavyImpactCount, 1);
+        expect(sfxPlayer.playWinCount, 1);
+        expect(visualHandler.triggered, [VisualEffectType.win]);
+      },
+    );
 
-    test('lose() triggers mediumImpact, fail sfx, and lose visual effect', () async {
-      final service = EventFeedbackService(
-        getSetting: () => createSetting(),
-        soundEffectsPlayer: sfxPlayer,
-        audioPlayer: musicPlayer,
-        hapticFeedback: hapticAdapter,
-        visualEffectsHandler: visualHandler,
-      );
+    test(
+      'lose() triggers mediumImpact, fail sfx, and lose visual effect',
+      () async {
+        final service = EventFeedbackService(
+          getSetting: () => createSetting(),
+          soundEffectsPlayer: sfxPlayer,
+          audioPlayer: musicPlayer,
+          hapticFeedback: hapticAdapter,
+          visualEffectsHandler: visualHandler,
+        );
 
-      await service.lose();
+        await service.lose();
 
-      expect(hapticAdapter.mediumImpactCount, 1);
-      expect(sfxPlayer.playLoseCount, 1);
-      expect(visualHandler.triggered, [VisualEffectType.lose]);
-    });
+        expect(hapticAdapter.mediumImpactCount, 1);
+        expect(sfxPlayer.playLoseCount, 1);
+        expect(visualHandler.triggered, [VisualEffectType.lose]);
+      },
+    );
 
-    test('rejectMove() triggers selectionClick, reject-move sfx, and rejectMove visual effect', () async {
-      final service = EventFeedbackService(
-        getSetting: () => createSetting(),
-        soundEffectsPlayer: sfxPlayer,
-        audioPlayer: musicPlayer,
-        hapticFeedback: hapticAdapter,
-        visualEffectsHandler: visualHandler,
-      );
+    test(
+      'rejectMove() triggers selectionClick, reject-move sfx, and rejectMove visual effect',
+      () async {
+        final service = EventFeedbackService(
+          getSetting: () => createSetting(),
+          soundEffectsPlayer: sfxPlayer,
+          audioPlayer: musicPlayer,
+          hapticFeedback: hapticAdapter,
+          visualEffectsHandler: visualHandler,
+        );
 
-      await service.rejectMove();
+        await service.rejectMove();
 
-      expect(hapticAdapter.selectionClickCount, 1);
-      expect(sfxPlayer.playRejectMoveCount, 1);
-      expect(visualHandler.triggered, [VisualEffectType.rejectMove]);
-    });
+        expect(hapticAdapter.selectionClickCount, 1);
+        expect(sfxPlayer.playRejectMoveCount, 1);
+        expect(visualHandler.triggered, [VisualEffectType.rejectMove]);
+      },
+    );
 
-    test('playBackgroundMusic() plays only when soundEnabled is true', () async {
-      var currentSetting = createSetting(sound: false);
-      final service = EventFeedbackService(
-        getSetting: () => currentSetting,
-        soundEffectsPlayer: sfxPlayer,
-        audioPlayer: musicPlayer,
-        hapticFeedback: hapticAdapter,
-        visualEffectsHandler: visualHandler,
-      );
+    test(
+      'playBackgroundMusic() plays only when soundEnabled is true',
+      () async {
+        var currentSetting = createSetting(sound: false);
+        final service = EventFeedbackService(
+          getSetting: () => currentSetting,
+          soundEffectsPlayer: sfxPlayer,
+          audioPlayer: musicPlayer,
+          hapticFeedback: hapticAdapter,
+          visualEffectsHandler: visualHandler,
+        );
 
-      await service.playBackgroundMusic();
-      expect(musicPlayer.playCount, 0);
+        await service.playBackgroundMusic();
+        expect(musicPlayer.playCount, 0);
 
-      currentSetting = createSetting(sound: true);
-      await service.playBackgroundMusic();
-      expect(musicPlayer.playCount, 1);
-    });
+        currentSetting = createSetting(sound: true);
+        await service.playBackgroundMusic();
+        expect(musicPlayer.playCount, 1);
+      },
+    );
 
     test('stopBackgroundMusic() delegates to musicPlayer.stop()', () async {
       final service = EventFeedbackService(
@@ -273,17 +291,22 @@ void main() {
       expect(musicPlayer.stopCount, 1);
     });
 
-    test('eventFeedbackServiceProvider can be resolved from ProviderContainer', () {
-      final container = ProviderContainer(
-        overrides: [
-          settingDomainProvider.overrideWithValue(SettingDomain(createSetting())),
-          soundEffectsPlayerProvider.overrideWithValue(sfxPlayer),
-          musicPlayerProvider.overrideWithValue(musicPlayer),
-        ],
-      );
+    test(
+      'eventFeedbackServiceProvider can be resolved from ProviderContainer',
+      () {
+        final container = ProviderContainer(
+          overrides: [
+            settingDomainProvider.overrideWithValue(
+              SettingDomain(createSetting()),
+            ),
+            soundEffectsPlayerProvider.overrideWithValue(sfxPlayer),
+            musicPlayerProvider.overrideWithValue(musicPlayer),
+          ],
+        );
 
-      final service = container.read(eventFeedbackServiceProvider);
-      expect(service, isNotNull);
-    });
+        final service = container.read(eventFeedbackServiceProvider);
+        expect(service, isNotNull);
+      },
+    );
   });
 }

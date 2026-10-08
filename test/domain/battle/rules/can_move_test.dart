@@ -41,21 +41,26 @@ void main() {
       );
     }
 
-    test('returns true when it is player\'s turn on started battle with 2 players', () {
-      final battle = createBattle(cells: [
-        BattleCellValueEnum.x, // player1 moved
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-      ]);
+    test(
+      'returns true when it is player\'s turn on started battle with 2 players',
+      () {
+        final battle = createBattle(
+          cells: [
+            BattleCellValueEnum.x, // player1 moved
+            BattleCellValueEnum.empty,
+            BattleCellValueEnum.empty,
+            BattleCellValueEnum.empty,
+            BattleCellValueEnum.empty,
+            BattleCellValueEnum.empty,
+            BattleCellValueEnum.empty,
+            BattleCellValueEnum.empty,
+            BattleCellValueEnum.empty,
+          ],
+        );
 
-      expect(canMove.calculate(battle, player2), isTrue);
-    });
+        expect(canMove.calculate(battle, player2), isTrue);
+      },
+    );
 
     test('returns false when battle status is not started', () {
       final battle = createBattle(status: BattleStatusEnum.created);
@@ -82,81 +87,91 @@ void main() {
     });
 
     test('returns false when it is not player\'s turn', () {
-      final battle = createBattle(cells: [
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-      ]);
+      final battle = createBattle(
+        cells: [
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+        ],
+      );
 
       // Empty board - player1's turn (filledCount = 0, index = 0)
       expect(canMove.calculate(battle, player2), isFalse);
     });
 
     test('returns false for non-participating player', () {
-      final battle = createBattle(cells: [
-        BattleCellValueEnum.x,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-      ]);
+      final battle = createBattle(
+        cells: [
+          BattleCellValueEnum.x,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+        ],
+      );
 
       expect(canMove.calculate(battle, player3), isFalse);
     });
 
     test('correctly alternates turns', () {
       // Player1 moves first (index 0)
-      var battle = createBattle(cells: [
-        BattleCellValueEnum.x,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-      ]);
+      var battle = createBattle(
+        cells: [
+          BattleCellValueEnum.x,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+        ],
+      );
       expect(canMove.calculate(battle, player1), isFalse);
       expect(canMove.calculate(battle, player2), isTrue);
 
       // Player2 moves (index 1)
-      battle = createBattle(cells: [
-        BattleCellValueEnum.x,
-        BattleCellValueEnum.o,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-      ]);
+      battle = createBattle(
+        cells: [
+          BattleCellValueEnum.x,
+          BattleCellValueEnum.o,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+        ],
+      );
       expect(canMove.calculate(battle, player2), isFalse);
       expect(canMove.calculate(battle, player1), isTrue);
 
       // Player1 moves again (index 2)
-      battle = createBattle(cells: [
-        BattleCellValueEnum.x,
-        BattleCellValueEnum.o,
-        BattleCellValueEnum.x,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-        BattleCellValueEnum.empty,
-      ]);
+      battle = createBattle(
+        cells: [
+          BattleCellValueEnum.x,
+          BattleCellValueEnum.o,
+          BattleCellValueEnum.x,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+          BattleCellValueEnum.empty,
+        ],
+      );
       expect(canMove.calculate(battle, player1), isFalse);
       expect(canMove.calculate(battle, player2), isTrue);
     });

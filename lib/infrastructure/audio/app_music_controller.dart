@@ -12,22 +12,17 @@ class AppMusicController implements MusicController {
     required String asset,
     required bool enabled,
     required bool loop,
-  })  : _player = player,
-        _asset = asset,
-        _enabled = enabled,
-        _loop = loop;
+  }) : _player = player,
+       _asset = asset,
+       _enabled = enabled,
+       _loop = loop;
 
   Future<void> play() async {
     if (!_enabled) return;
 
-    await _player.setReleaseMode(
-      _loop ? ReleaseMode.loop : ReleaseMode.stop,
-    );
+    await _player.setReleaseMode(_loop ? ReleaseMode.loop : ReleaseMode.stop);
 
-    await _player.play(
-      AssetSource(_asset),
-      volume: 1.0,
-    );
+    await _player.play(AssetSource(_asset), volume: 1.0);
   }
 
   Future<void> stop() => _player.stop();

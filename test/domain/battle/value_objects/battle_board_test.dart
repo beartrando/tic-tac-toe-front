@@ -54,7 +54,10 @@ void main() {
     });
 
     test('filledCount is 9 for full board', () {
-      final cells = List.generate(9, (i) => i % 2 == 0 ? BattleCellValueEnum.x : BattleCellValueEnum.o);
+      final cells = List.generate(
+        9,
+        (i) => i % 2 == 0 ? BattleCellValueEnum.x : BattleCellValueEnum.o,
+      );
       final board = BattleBoard(cells);
 
       expect(board.filledCount, 9);
@@ -80,7 +83,10 @@ void main() {
       final cells = List.filled(9, BattleCellValueEnum.empty);
       final board = BattleBoard(cells);
 
-      expect(() => board.cells[0] = BattleCellValueEnum.x, throwsUnsupportedError);
+      expect(
+        () => board.cells[0] = BattleCellValueEnum.x,
+        throwsUnsupportedError,
+      );
     });
 
     test('toString returns comma-separated cells', () {
