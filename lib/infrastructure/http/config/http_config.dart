@@ -1,22 +1,22 @@
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class HttpConfig {
-  final String schema;
-  final String host;
-  final int port;
+  final String origin;
 
   const HttpConfig({
-    required this.schema,
-    required this.host,
-    required this.port,
+    required this.origin,
   });
 
   factory HttpConfig.fromEnv() {
     final host = dotenv.env['GATEWAY_HOST'] ?? 'localhost';
     final port = int.tryParse(dotenv.env['GATEWAY_PORT'] ?? '') ?? 443;
 
-    final schema = port == 443 ? 'https' : 'http';
+    final scheme = port == 443 ? 'https' : 'http';
+    final finalPort = port == 443 ? '' : ':$port';
 
-    return HttpConfig(schema: schema, host: host, port: port);
+    final origin = '$scheme://$host$finalPort';
+
+    return HttpConfig(origin: origin);
   }
 }

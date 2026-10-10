@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:front/infrastructure/auth/value_objects/access_token.dart';
 import 'package:front/infrastructure/websocket/config/websocket_config.dart';
 import 'package:logger/logger.dart';
@@ -47,13 +48,15 @@ abstract class WebsocketConnection<T> {
 
   Uri getWsUri() {
     return Uri.parse(
-      'ws://${config.host}:${config.port}/$pathname?token=${accessToken.value}',
+      '${config.origin}/$pathname?token=${accessToken.value}',
     );
   }
 
   void connect() {
+    print('WebSocket connect() called');
+    print('FILE CHECK 123');
     final uri = getWsUri();
-    // logger.i('Connecting to $uri');
+    print('WebSocket URI: $uri');
     _channel = WebSocketChannel.connect(uri);
 
     _subscription = _channel.stream.listen(

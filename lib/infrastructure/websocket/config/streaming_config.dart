@@ -3,17 +3,17 @@ import 'package:front/infrastructure/websocket/config/websocket_config.dart';
 
 class StreamingConfig implements WebsocketConfig {
   @override
-  final String host;
+  final String origin;
 
-  @override
-  final int port;
-
-  const StreamingConfig({required this.host, required this.port});
+  const StreamingConfig({required this.origin});
 
   factory StreamingConfig.fromEnv() {
-    return StreamingConfig(
-      host: dotenv.env['STREAMING_HOST'] ?? 'localhost',
-      port: int.tryParse(dotenv.env['STREAMING_PORT'] ?? '') ?? 8080,
-    );
+    final host = dotenv.env['STREAMING_HOST'] ?? 'localhost';
+    final port = dotenv.env['STREAMING_PORT'] ?? '';
+
+    final finalPort = port.isEmpty ? '' : ':$port';
+    final origin = 'ws://$host$finalPort';
+
+    return StreamingConfig(origin: origin);
   }
 }
