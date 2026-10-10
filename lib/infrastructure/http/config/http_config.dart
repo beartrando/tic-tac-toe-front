@@ -13,7 +13,7 @@ class HttpConfig {
 
   factory HttpConfig.fromEnv() {
     final host = dotenv.env['GATEWAY_HOST'] ?? 'localhost';
-    final port = int.tryParse(dotenv.env['GATEWAY_PORT'] ?? '') ?? 9090;
+    final port = int.tryParse(dotenv.env['GATEWAY_PORT'] ?? '') ?? 443;
 
     final schema = port == 443 ? 'https' : 'http';
 

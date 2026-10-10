@@ -3,7 +3,7 @@ name: Build & Publish Mobile App
 on:
   push:
     branches:
-      - dev
+#      - dev
       - uat
       - prod
 
