@@ -37,10 +37,6 @@ class BattleChannel extends WebsocketConnection<Battle> {
 
   @override
   getWsUri() {
-    print('getWsUri');
-
-    print('WebSocket port: ${config.origin}');
-
     return Uri.parse(
       '${config.origin}/$pathname?token=${accessToken.value}&profileId=${profileId.value}',
     );

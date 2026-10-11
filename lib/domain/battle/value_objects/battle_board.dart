@@ -6,8 +6,12 @@ class BattleBoard {
   final List<BattleCellValueEnum> cells;
 
   BattleBoard(List<BattleCellValueEnum> cells)
-    : assert(cells.length == size),
-      cells = List.unmodifiable(cells);
+      : assert(cells.isEmpty || cells.length == size),
+        cells = List.unmodifiable(
+          cells.isEmpty
+              ? List.filled(size, BattleCellValueEnum.empty)
+              : cells,
+        );
 
   BattleCellValueEnum operator [](int index) => cells[index];
 
