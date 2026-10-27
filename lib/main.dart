@@ -107,8 +107,12 @@ Future<ProviderContainer> _initRiverpodContainer() async {
     ],
   );
 
-  final authService = container.read(authServiceProvider);
-  await authService.getOrCreateAccessToken();
+  try {
+    final authService = container.read(authServiceProvider);
+    await authService.getOrCreateAccessToken();
+  } catch (error, stack) {
+    logger.w('Initial access token acquisition failed', error: error, stackTrace: stack);
+  }
 
   // final authService = container.read(authServiceProvider);
   // await authService.getOrCreateJwt();
