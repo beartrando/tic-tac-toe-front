@@ -47,8 +47,13 @@ abstract class WebsocketConnection<T> {
   }
 
   Uri getWsUri() {
-    return Uri.parse(
-      '${config.origin}/$pathname?token=${accessToken.value}',
+    final base = Uri.parse(config.origin);
+
+    return base.replace(
+      path: '${base.path.replaceFirst(RegExp(r'/$'), '')}/$pathname',
+      queryParameters: {
+        'token': accessToken.value,
+      },
     );
   }
 
