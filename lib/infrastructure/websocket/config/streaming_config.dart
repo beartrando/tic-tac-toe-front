@@ -8,13 +8,52 @@ class StreamingConfig implements WebsocketConfig {
   const StreamingConfig({required this.origin});
 
   factory StreamingConfig.fromEnv() {
-    final host = dotenv.env['STREAMING_HOST'] ?? 'localhost';
-    final port = dotenv.env['STREAMING_PORT'] ?? '';
+    final raw = (dotenv.env['STREAMING_WS_ADDRESS'] ??
+            dotenv.env['STREAMING_HOST'] ??
+            'localhost')
+        .trim();
 
-    final finalPort = port.isEmpty ? '' : ':$port';
+    final isLegacy = !raw.contains('://');
+    Uri uri;
+    if (isLegacy) {
+      if (raw.contains(':')) {
+        final idx = raw.lastIndexOf(':');
+        final hostPart = raw.substring(0, idx);
+        final portPart = raw.substring(idx + 1);
+        uri = Uri(
+          scheme: '',
+          host: hostPart.isEmpty ? 'localhost' : hostPart,
+          port: int.tryParse(portPart),
+        );
+      } else {
+        uri = Uri(
+          scheme: '',
+          host: raw.isEmpty ? 'localhost' : raw,
+        );
+      }
+    } else {
+      uri = Uri.tryParse(raw) ?? Uri(scheme: '', host: 'localhost');
+    }
+
+    final host = uri.host.isEmpty ? 'localhost' : uri.host;
     final isLocal = host == 'localhost' || host == '127.0.0.1';
-    final scheme = isLocal ? 'ws' : 'wss';
-    final origin = '$scheme://$host$finalPort';
+
+    var scheme = uri.scheme;
+    if (scheme.isEmpty) {
+      scheme = isLocal ? 'ws' : 'wss';
+    }
+
+    final port = uri.hasPort ? uri.port : null;
+    final path = uri.path;
+    final normalizedPath = (path.isEmpty || path == '/') ? '' : path;
+
+    final isDefaultPort = (port == null) ||
+        (port == 80 && (scheme == 'ws' || scheme == 'http')) ||
+        (port == 443 && (scheme == 'wss' || scheme == 'https'));
+
+    final portPart = (port == null || isDefaultPort) ? '' : ':$port';
+
+    final origin = '$scheme://$host$portPart$normalizedPath';
 
     return StreamingConfig(origin: origin);
   }
