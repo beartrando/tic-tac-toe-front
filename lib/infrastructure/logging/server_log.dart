@@ -18,9 +18,17 @@ import 'package:front/infrastructure/storage/secure_storage.dart';
 class ServerLog {
   static const Duration _timeout = Duration(seconds: 3);
 
-  static final HttpClient _httpClient = HttpClient(
-    const HttpConfig(origin: 'https://tic-tac-toe.beartrando.org'),
-  );
+  static HttpConfig _buildConfig() {
+    try {
+      final raw = dotenv.env['GATEWAY_HTTP_ADDRESS']?.trim();
+      if (raw != null && raw.isNotEmpty) {
+        return HttpConfig.fromEnv();
+      }
+    } catch (_) {
+      // dotenv может быть не инициализирован — используем значение по умолчанию.
+    }
+    return const HttpConfig(origin: 'https://tic-tac-toe.beartrando.org');
+  }
 
   static DeviceService? _deviceService;
 
@@ -61,7 +69,8 @@ class ServerLog {
         }
       }
 
-      await _httpClient
+      final httpClient = HttpClient(_buildConfig());
+      await httpClient
           .post('/gateway/log', body: <String, Object?>{
             'event': event,
             'data': data,
