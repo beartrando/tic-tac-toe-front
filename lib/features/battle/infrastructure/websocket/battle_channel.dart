@@ -6,7 +6,6 @@ import 'package:front/contracts/proto/streaming.pb.dart';
 import 'package:front/domain/battle/entities/battle.dart';
 import 'package:front/domain/battle/value_objects/battle_id.dart';
 import 'package:front/domain/profile/value_objects/profile_id.dart';
-import 'package:front/infrastructure/logging/server_log.dart';
 import 'package:front/infrastructure/proto/converters/streaming/battle_response_converter.dart';
 import 'package:front/infrastructure/proto/converters/timestamp_converter.dart';
 import 'package:front/infrastructure/websocket/websocket_connection.dart';
@@ -28,21 +27,9 @@ class BattleChannel extends WebsocketConnection<Battle> {
       );
       // logger.i('before battle added to controller');
       safeAdd(battle);
-
-      ServerLog.log('websocket data', <String, Object?>{
-        'received': true,
-        'bytes': message.length,
-        'battle': battle.toString(),
-      });
-
       // logger.i('battle added to controller');
     } catch (e) {
       logger.e('Failed to parse: $e');
-      ServerLog.log('websocket data', <String, Object?>{
-        'received': false,
-        'bytes': message.length,
-        'error': e.toString(),
-      });
     }
   }
 
