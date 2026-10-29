@@ -55,17 +55,26 @@ class ServerLog {
     try {
       final debugDevice = _readEnv('DEBUG_DEVICE');
       if (debugDevice != null && debugDevice.isNotEmpty) {
-        String? currentDeviceId;
-        final service = _deviceServiceInstance;
-        if (service != null) {
-          try {
-            currentDeviceId = (await service.getDeviceId()).value;
-          } catch (_) {
-            currentDeviceId = null;
+        final allowedDevices = debugDevice
+            .split(RegExp(r'[,\s]+'))
+            .map((value) => value.trim())
+            .where((value) => value.isNotEmpty)
+            .toList();
+
+        if (allowedDevices.isNotEmpty) {
+          String? currentDeviceId;
+          final service = _deviceServiceInstance;
+          if (service != null) {
+            try {
+              currentDeviceId = (await service.getDeviceId()).value;
+            } catch (_) {
+              currentDeviceId = null;
+            }
           }
-        }
-        if (currentDeviceId != debugDevice) {
-          return;
+          if (currentDeviceId == null ||
+              !allowedDevices.contains(currentDeviceId)) {
+            return;
+          }
         }
       }
 
