@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:front/infrastructure/auth/value_objects/access_token.dart';
+import 'package:front/infrastructure/logging/server_log.dart';
 import 'package:front/infrastructure/websocket/config/websocket_config.dart';
 import 'package:logger/logger.dart';
 import 'package:web_socket_channel/status.dart' as status;
@@ -104,6 +105,13 @@ abstract class WebsocketConnection<T> {
       'path=${uri.path}',
     );
 
+    ServerLog.log('websocket connect', <String, Object?>{
+      'scheme': uri.scheme,
+      'host': uri.host,
+      'port': uri.hasPort ? uri.port : null,
+      'path': uri.path,
+    });
+
     return uri;
   }
 
@@ -133,15 +141,27 @@ abstract class WebsocketConnection<T> {
       _connected = true;
       logger.i('WebSocket handshake completed');
 
+      ServerLog.log('websocket handshake', <String, Object?>{
+        'success': true,
+      });
+
       _subscription = newChannel.stream.listen(
         (message) {
           if (message is List<int>) {
+            ServerLog.log('websocket message', <String, Object?>{
+              'received': true,
+              'bytes': message.length,
+            });
             messageHandler(message);
           } else {
             logger.e(
               'Unexpected WebSocket message type: '
               '${message.runtimeType}',
             );
+            ServerLog.log('websocket message', <String, Object?>{
+              'received': false,
+              'type': message.runtimeType.toString(),
+            });
           }
         },
         onError: (Object error, StackTrace stackTrace) {
@@ -151,6 +171,9 @@ abstract class WebsocketConnection<T> {
             error: error,
             stackTrace: stackTrace,
           );
+          ServerLog.log('websocket error', <String, Object?>{
+            'error': error.toString(),
+          });
         },
         onDone: () {
           _connected = false;
@@ -158,6 +181,11 @@ abstract class WebsocketConnection<T> {
             'WebSocket closed; code=${newChannel.closeCode}, '
             'reason=${newChannel.closeReason}',
           );
+
+          ServerLog.log('websocket closed', <String, Object?>{
+            'code': newChannel.closeCode,
+            'reason': newChannel.closeReason,
+          });
 
           if (!_closing) {
             onConnectionLost?.call();
@@ -177,6 +205,10 @@ abstract class WebsocketConnection<T> {
         error: error,
         stackTrace: stackTrace,
       );
+      ServerLog.log('websocket handshake', <String, Object?>{
+        'success': false,
+        'error': error.toString(),
+      });
       rethrow;
     }
   }
