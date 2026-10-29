@@ -163,7 +163,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: beartrando/tic-tac-toe-proto
-          ref: master
+          ref: ${{ github.ref_name }}
           path: infra/proto
           token: ${{ secrets.GH_PAT }}
 
